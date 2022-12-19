@@ -4,6 +4,8 @@ const userController = require('../controllers/jobController')
 
 //User's APIs -> Authentication required.
 router.post('/register', userController.createJob)
-router.get("/getAllUser",userController.getAllJob)
+router.get("/getAllJob",userController.getAllJob)
+router.post('/CreateUser', userController.createuser)
+router.post('/login', userController.loginUser)
 
 module.exports = router;

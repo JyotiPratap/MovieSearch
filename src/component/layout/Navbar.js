@@ -27,7 +27,7 @@ const Navbar = () => {
                     </li>
                 </ul>
             </div>
-            <NavLink className="btn btn-outline-light" to="/register">Post Job</NavLink>
+            <NavLink className="btn btn-outline-light" to="/login">Admin</NavLink>
         </nav>
     )
 }

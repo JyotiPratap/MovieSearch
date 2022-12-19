@@ -5,23 +5,26 @@ import Job from "./component/pages/Job";
 import Code from "./component/pages/Code";
 import PageNotFound from "./component/pages/PageNotFound";
 import Navbar from "./component/layout/Navbar"
-import addJob from "./component/addJob/addJob"
+import login from "./component/loginPage/login"
+import JobPost from "./component/JobPost/JobPost"
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 const App = () => {
+  
   return (
+    <div className="App">
     <Router>
-      <div className="App">
       <Navbar />
       <Switch>
         <Route exact path="/"component={Home}></Route>
         <Route exact path="/Job"component={Job}></Route>
         <Route exact path="/Code"component={Code}></Route>
-        <Route exact path="/register"component={addJob}/>
+        <Route exact path="/login"component={login}></Route>
+        <Route exact path="/JobPost"component={JobPost}></Route>
         <Route exact path="*"component={PageNotFound}></Route>
       </Switch>
-      </div>
     </Router>
+      </div>
   )
 }
 export default App

@@ -9,7 +9,7 @@ const Job = () => {
     loadUsers();
   }, []);
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:4000/getAllUser");
+    const result = await axios.get("http://localhost:4000/getAllJob");
     setUser(result.data.result.reverse())
     console.log(result)
   }

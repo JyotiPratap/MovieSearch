@@ -1,5 +1,7 @@
 const jobModel = require("../models/jobModel");
+const usermodel = require("../models/userModel");
 const validator = require("../utils/validator");
+
 
 const createJob = async (req, res) => {
   try {
@@ -30,7 +32,7 @@ const createJob = async (req, res) => {
     const updatedBody = { CompanyName,Role, Batch,Salary, Location}
 
     let job = await jobModel.create(updatedBody)
-    res.status(201).send({ status: true, message: 'User created successfully', data: job })
+    res.status(201).send({message: 'User created successfully', data: job })
 
   } catch (err) {
     res.status(500).json({ status: false, msg: err.message });
@@ -52,5 +54,67 @@ const getAllJob = async (req,res)=>{
 }
 
 
+
+
+
+const createuser = async (req, res) => {
+  try {
+    let requestBody = req.body
+
+    if (!validator.isValidRequestBody(requestBody))
+      return res.status(400).json({
+        status: false, msg: "Invalid request parameters ,please provide the user details",
+      });
+
+    let { email,password} = requestBody;
+
+    if (!validator.isValid(email))
+      return res.status(400).json({ status: false, msg: "please provide the email" });
+
+    if (!validator.isValid(password))
+      return res.status(400).json({ status: false, msg: "please provide the password" });
+
+   
+
+    const createUser = { email,password}
+
+    let user = await usermodel.create(createUser)
+    res.status(201).send({ status: true, message: 'User created successfully', data: user })
+
+  } catch (err) {
+    res.status(500).json({ status: false, msg: err.message });
+  }
+};
+
+
+
+const loginUser = async function(req,res){
+     try{
+      let requestBody = req.body;
+      let { email,password} = requestBody;
+
+          if(!email){
+               return res.status(400).send({status : false, msg : "Enter Valid Email"})}
+          if(!password){
+               return res.status(400).send({status:false,msg:"Enter valid Password"})}
+
+          let data = await usermodel.findOne({email : email,password : password})
+          if(!data){
+               return res.status(400).send({status:false,msg:"credentials dont match,plz check and try again"})} 
+            
+          res.status(200).send({message: 'login successfully',data : data})
+
+     }
+     catch(error)
+     {
+          console.log(error)
+          res.status(500).send({status: false, msg: error.message})
+     }
+}
+
+
+
 module.exports.createJob = createJob
 module.exports.getAllJob = getAllJob
+module.exports.createuser = createuser
+module.exports.loginUser = loginUser
