@@ -15,44 +15,32 @@ const Job = () => {
   }
   return (
 
-    <div>
-      <br></br>
-      <br></br>
-      <div className="py-4">
-        <h1>Get Hired</h1>
-        <>
-          <table className="table border shadow">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">CompanyName</th>
-                <th scope="col">Looking For</th>
-                <th scope="col">Batch</th>
-                <th scope="col">Salary</th>
-                <th scope="col">Location</th>
-                <th scope="col">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr>
-                  <th scope="row">{index + 1}</th>
-                  <td>{user.CompanyName}</td>
-                  <td>{user.Role}</td>
-                  <td>{user.Batch}</td>
-                  <td>{user.Salary}</td>
-                  <td>{user.Location}</td>
-                  <td>{user.createdAt}</td>
-                  <td>
-                    <a class="btn btn-success" href={user.JobUrl} role="button">Apply</a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
+<div className="clearfix">
+       <br></br>
+       <br></br>
+       <br></br>
+       <div className="card">
+        <div className="row">
+          {users.map(data => (
+            <div className="col-md-4 animated fadeIn" style={{maxWidth: '18rem'}}>
+              <style dangerouslySetInnerHTML={{__html: "\n  .container {\n    display: flex;\n    justify-content: space-between;\nflex-direction: row;\nflex-wrap: wrap;\n  }\n   .card{\n border:1.5px solid black;\n}\n" }} />
+              <div className="card">
+                <div className="card-body">
+                  <div className="avatar">
+                  </div>
+                  <h4 className="card-title">{data.CompanyName}</h4>
+                  <p className="card-text">{data.Location}</p>
+                  <p className="card-text">Batch: {data.Batch}</p>
+                  <a href="sd smdnsk" class="btn btn-success">Apply</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        </div>    
       </div>
-    </div>
+
+    
   )
 }
 export default Job
